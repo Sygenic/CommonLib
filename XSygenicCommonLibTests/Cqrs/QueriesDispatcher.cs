@@ -5,7 +5,7 @@ public class QueriesDispatcher
 	[Fact]
 	public async Task _()
 	{
-		var queryDispatcher = TestHost.Services.Get<IQueryDispatcher>();
+		var queryDispatcher = TestHost.Services.Get<ICqrsDispatcher>();
 
 		var input = "Hello world I am Jan B!";
 		var query = new EchoQuery(input);

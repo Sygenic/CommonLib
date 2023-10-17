@@ -5,8 +5,7 @@ public static class CqrsExtensions
 	public static IServiceCollection TryAddCqrs(this IServiceCollection services)
 	{
 		services.TryAddSingleton<IQueryHandlerProvider, QueryHandlerProvider>();
-		services.TryAddTransient<ICommandDispatcher, CommandDispatcher>();
-		services.TryAddTransient<IQueryDispatcher, QueryDispatcher>();
+		services.TryAddTransient<ICqrsDispatcher, CqrsDispatcher>();
 
 		services.Scan(x => x
 			.FromApplicationDependencies()

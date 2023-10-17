@@ -1,11 +1,11 @@
 ﻿namespace Sygenic.CommonLib;
 
-internal sealed class QueryDispatcher : IQueryDispatcher
+internal sealed class CqrsDispatcher : ICqrsDispatcher
 {
 	private readonly IQueryHandlerProvider queryHandlerProvider;
 	private readonly IServiceProvider serviceProvider;
 
-	public QueryDispatcher(IQueryHandlerProvider queryHandlerProvider, IServiceProvider serviceProvider)
+	public CqrsDispatcher(IQueryHandlerProvider queryHandlerProvider, IServiceProvider serviceProvider)
 	{
 		this.queryHandlerProvider = queryHandlerProvider;
 		this.serviceProvider = serviceProvider;
@@ -15,9 +15,17 @@ internal sealed class QueryDispatcher : IQueryDispatcher
 	{
 		var handlerType = queryHandlerProvider.GetHandlerForQuery(query);
 		using var scope = serviceProvider.CreateScope();
-		var handlerCaller = scope.ServiceProvider.GetRequiredService(handlerType) as IQueryHandlerCaller<TResponse> 
+		var handlerCaller = scope.ServiceProvider.GetRequiredService(handlerType) as IQueryHandlerCaller<TResponse>
 			?? throw new ShouldNotBeHereException($"Service casted to {nameof(IQueryHandlerCaller<TResponse>)} is null");
 
 		return await handlerCaller.CallQueryHandlerAsyc(query, cancellationToken);
+	}
+
+	public async ValueTask ExecuteCommandAsync<TCommand>(TCommand command, CancellationToken cancellationToken)
+		where TCommand : ICommand
+	{
+		using var scope = serviceProvider.CreateScope();
+		var handler = scope.ServiceProvider.GetRequiredService<ICommandHandler<TCommand>>();
+		await handler.HandleAsync(command, cancellationToken);
 	}
 }

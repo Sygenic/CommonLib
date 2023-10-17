@@ -5,7 +5,7 @@ public class CommandsDispatcher
 	[Fact]
 	public async Task _()
 	{
-		var cmdDispatcher = TestHost.Services.Get<ICommandDispatcher>();
+		var cmdDispatcher = TestHost.Services.Get<ICqrsDispatcher>();
 		var provider = new Provider();
 
 		var addCmd = new AddOneCommand(provider);
