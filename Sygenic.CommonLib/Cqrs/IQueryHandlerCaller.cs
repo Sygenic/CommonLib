@@ -1,6 +1,6 @@
 ﻿namespace Sygenic.CommonLib;
 
-public interface IQueryHandlerCaller<TResponse>
+public interface IQueryHandlerCaller<R>
 {
-	ValueTask<TResponse> CallQueryHandlerAsyc(IQuery<TResponse> query, CancellationToken cancellationToken);
+	ValueTask<R> CallQueryHandlerAsyc(IQuery<R> query, CancellationToken cancellationToken);
 }

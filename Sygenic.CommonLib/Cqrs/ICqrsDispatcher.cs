@@ -2,8 +2,7 @@
 
 public interface ICqrsDispatcher
 {
-	ValueTask<TResponse> ExecuteQueryAsync<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken);
+	ValueTask<R> ExecuteQueryAsync<R>(IQuery<R> query, CancellationToken cancellationToken);
 
-	ValueTask ExecuteCommandAsync<TCommand>(TCommand command, CancellationToken cancellationToken) 
-		where TCommand : ICommand;
+	ValueTask ExecuteCommandAsync<C>(C command, CancellationToken cancellationToken) where C : ICommand;
 }

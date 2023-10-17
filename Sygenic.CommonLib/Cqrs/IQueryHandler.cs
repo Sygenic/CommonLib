@@ -1,9 +1,9 @@
 ﻿namespace Sygenic.CommonLib;
 
-public interface IQueryHandler<in TQuery, TResponse> : IQueryHandlerCaller<TResponse> where TQuery : IQuery<TResponse>
+public interface IQueryHandler<in Q, R> : IQueryHandlerCaller<R> where Q : IQuery<R>
 {
-	ValueTask<TResponse> HandleAsync(TQuery query, CancellationToken cancellationToken);
+	ValueTask<R> HandleAsync(Q query, CancellationToken cancellationToken);
 
-	async ValueTask<TResponse> IQueryHandlerCaller<TResponse>.CallQueryHandlerAsyc(IQuery<TResponse> query, CancellationToken cancellationToken) => 
-		await HandleAsync((TQuery)query, cancellationToken).ConfigureAwait(false);
+	async ValueTask<R> IQueryHandlerCaller<R>.CallQueryHandlerAsyc(
+		IQuery<R> query, CancellationToken cancellationToken) => await HandleAsync((Q)query, cancellationToken);
 }

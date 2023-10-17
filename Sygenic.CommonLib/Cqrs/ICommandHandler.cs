@@ -1,6 +1,6 @@
 ﻿namespace Sygenic.CommonLib;
 
-public interface ICommandHandler<in TCommand> where TCommand : ICommand
+public interface ICommandHandler<in C> where C : ICommand
 {
-	ValueTask HandleAsync(TCommand command, CancellationToken cancellationToken);
+	ValueTask HandleAsync(C command, CancellationToken cancellationToken);
 }
