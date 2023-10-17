@@ -5,7 +5,7 @@ public class RegisterCmdsAsTransients_
 	[Fact]
 	public void _()
 	{
-		X.Services.GetRequiredService<ASimpleCmd>();
-		X.Services.GetRequiredService<AdditionCmd>();
+		TestHost.Services.GetRequiredService<ASimpleCmd>();
+		TestHost.Services.GetRequiredService<AdditionCmd>();
 	}
 }

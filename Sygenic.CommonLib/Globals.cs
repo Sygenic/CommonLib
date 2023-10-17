@@ -21,3 +21,5 @@ global using Microsoft.Extensions.Logging.Console;
 global using Microsoft.Extensions.Options;
 
 global using Pastel;
+
+global using MappingTypeToType = System.Collections.Generic.Dictionary<System.Type, System.Type>;

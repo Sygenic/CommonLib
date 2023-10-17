@@ -6,7 +6,7 @@ public class Map
 	public void _()
 	{
 		var target = new TargetInstance();
-		var mapperFactory = X.Services.Get<IAttributeMapperFactory>();
+		var mapperFactory = TestHost.Services.Get<IAttributeMapperFactory>();
 		var mapper = mapperFactory.Create<SourceClass>();
 		mapper
 				.Map<TestStringsSingleAttribute, string[]>(value => target.TestStringSingle = value)

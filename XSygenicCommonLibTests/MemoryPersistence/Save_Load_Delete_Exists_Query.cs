@@ -5,7 +5,7 @@ public class Save_Load_Delete_Exists_Query
 	[Fact]
 	public async Task _()
 	{
-		var persistence = X.Services.Get<IPersistence>();
+		var persistence = TestHost.Services.Get<IPersistence>();
 
 		var someDataA = new SomeDataA();
 		var someDataB = new SomeDataB();

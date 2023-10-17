@@ -1,4 +1,4 @@
-﻿namespace XTests;
+﻿namespace _;
 
 public class BaseIfException_
 {

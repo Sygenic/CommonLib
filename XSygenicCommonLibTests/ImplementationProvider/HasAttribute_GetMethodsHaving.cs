@@ -7,7 +7,7 @@ public class HasAttribute_GetMethodsHaving
 	[Fact]
 	public void _()
 	{
-		var implementationProvider = X.Services.Get<IImplementationProvider>();
+		var implementationProvider = TestHost.Services.Get<IImplementationProvider>();
 		var type = typeof(SomeClass);
 		var someMethodInfo = type.GetMethod(nameof(SomeClass.SomeMethod)) ?? throw new Exception();
 		var someOtherMethodInfo = type.GetMethod(nameof(SomeClass.SomeOtherMethod)) ?? throw new Exception();
