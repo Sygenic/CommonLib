@@ -2,4 +2,5 @@
 
 public interface IEventHandler<in E> where E : IEvent
 {
+	Task HandleEventAsync(E e);
 }
