@@ -5,9 +5,4 @@
 /// </summary>
 [Tested]
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]
-public class TODOAttribute : BaseValueAttribute<object[]>
-{
-	public TODOAttribute(params object[] values) : base(values)
-	{
-	}
-}
+public class TODOAttribute(params object[] values) : BaseValueAttribute<object[]>(values);

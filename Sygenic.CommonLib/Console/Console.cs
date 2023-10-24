@@ -1,15 +1,7 @@
 ﻿namespace Sygenic.CommonLib;
 
-public class Console : IConsole
+public class Console(ErrorConsole errorConsole) : IConsole
 {
-	#region ctor DI
-	private readonly ErrorConsole errorConsole;
-	public Console(ErrorConsole errorConsole)
-	{
-		this.errorConsole = errorConsole;
-	}
-	#endregion
-
 	public IConsole Error => errorConsole;
 
 	public void Write(params object[] objs)

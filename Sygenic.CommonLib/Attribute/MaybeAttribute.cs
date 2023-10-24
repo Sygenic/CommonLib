@@ -6,9 +6,4 @@
 /// </summary>
 [Tested]
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]
-public class MaybeAttribute : BaseValueAttribute<object[]>
-{
-	public MaybeAttribute(params object[] values) : base(values)
-	{
-	}
-}
+public class MaybeAttribute(params object[] values) : BaseValueAttribute<object[]>(values);

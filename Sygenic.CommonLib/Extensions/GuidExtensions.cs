@@ -14,7 +14,7 @@ public static class GuidExtensions
 		Span<byte> guidBytes = stackalloc byte[16];
 		Span<byte> encodedBytes = stackalloc byte[24];
 
-		MemoryMarshal.TryWrite(guidBytes, ref guid); // write bytes from the Guid
+		MemoryMarshal.TryWrite(guidBytes, in guid); // write bytes from the Guid
 		Base64.EncodeToUtf8(guidBytes, encodedBytes, out _, out _);
 
 		Span<char> chars = stackalloc char[22];

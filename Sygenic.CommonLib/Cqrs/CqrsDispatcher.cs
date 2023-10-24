@@ -1,16 +1,9 @@
 ﻿namespace Sygenic.CommonLib;
 
-internal sealed class CqrsDispatcher : ICqrsDispatcher
+internal sealed class CqrsDispatcher(
+	IHandlerProvider handlerProvider, 
+	IServiceProvider serviceProvider) : ICqrsDispatcher
 {
-	private readonly IHandlerProvider handlerProvider;
-	private readonly IServiceProvider serviceProvider;
-
-	public CqrsDispatcher(IHandlerProvider handlerProvider, IServiceProvider serviceProvider)
-	{
-		this.handlerProvider = handlerProvider;
-		this.serviceProvider = serviceProvider;
-	}
-
 	public async ValueTask<R> RunQueryAsync<R>(IQuery<R> query, CancellationToken cancellationToken)
 	{
 		var handlerType = handlerProvider.GetQueryHandlerType(query);

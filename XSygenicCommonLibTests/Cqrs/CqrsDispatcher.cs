@@ -13,10 +13,10 @@ public class CqrsDispatcher
 		var providerValueQuery = new ValueProviderQuery(provider);
 		var eventHandlerA = new EventA(provider);
 
-		await dispatcher.RunCommandAsync(add1Cmd, ct);
-		await dispatcher.RunCommandAsync(add1Cmd, ct);
-		await dispatcher.RunCommandAsync(substract1Cmd, ct);
-		await dispatcher.DispatchEventAsync(eventHandlerA, ct);
+		await dispatcher.RunCommandAsync(add1Cmd, ct);			// +1
+		await dispatcher.RunCommandAsync(add1Cmd, ct);			// +1
+		await dispatcher.RunCommandAsync(substract1Cmd, ct);	//-1
+		await dispatcher.DispatchEventAsync(eventHandlerA, ct); // +3 & +5
 		var actual = await dispatcher.RunQueryAsync(providerValueQuery, ct);
 		Assert.Equal(expected: 1+1-1+3+5, actual: actual);
 	}

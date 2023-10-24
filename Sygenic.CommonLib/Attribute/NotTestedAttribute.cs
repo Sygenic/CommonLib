@@ -5,9 +5,4 @@
 /// </summary>
 [Tested]
 [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-public sealed class NotTestedAttribute : BaseValueAttribute<string[]>
-{
-	public NotTestedAttribute(params string[] infos) : base(infos)
-	{
-	}
-}
+public sealed class NotTestedAttribute(params string[] infos) : BaseValueAttribute<string[]>(infos);

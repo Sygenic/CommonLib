@@ -2,14 +2,9 @@
 
 [NotTested]
 [Serializable]
-internal sealed class MoreThanOneImplementationFoundForInterfaceException : Exception
+internal sealed class MoreThanOneImplementationFoundForInterfaceException(
+	Type interfaceType, List<Type> implementationTypes) : Exception
 {
-	private Type? interfaceType;
-	private List<Type> implementationTypes = new();
-
-	public MoreThanOneImplementationFoundForInterfaceException(Type interfaceType, List<Type> implementationTypes)
-	{
-		this.interfaceType = interfaceType;
-		this.implementationTypes = implementationTypes;
-	}
+	public readonly Type InterfaceType = interfaceType;
+	public readonly List<Type> ImplementationTypes = implementationTypes;
 }

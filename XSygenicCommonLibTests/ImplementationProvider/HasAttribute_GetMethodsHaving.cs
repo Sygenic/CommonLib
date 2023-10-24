@@ -4,6 +4,8 @@ namespace ImplementationProvider;
 
 public class HasAttribute_GetMethodsHaving
 {
+	private static readonly string[] expected = ["1", "2", "3"];
+
 	[Fact]
 	public void _()
 	{
@@ -17,7 +19,7 @@ public class HasAttribute_GetMethodsHaving
 		Assert.Equal(2, having.Count);
 		Assert.Contains(someMethodInfo, having);
 		Assert.Contains(type.GetMethod(nameof(SomeClass.ThirdMethod)) ?? throw new Exception(), having);
-		Assert.Equal(new string[] { "1", "2", "3" }, implementationProvider.GetAttributeValue<string[], TestStringsSingleAttribute>(someOtherMethodInfo).OrderBy(x => x).ToArray());
+		Assert.Equal(expected, implementationProvider.GetAttributeValue<string[], TestStringsSingleAttribute>(someOtherMethodInfo).OrderBy(x => x).ToArray());
 	}
 	
 	class SomeClass

@@ -1,18 +1,8 @@
 ﻿namespace Sygenic.CommonLib;
 
 [NotTested]
-internal sealed class CmdRegistry : ICmdRegistry
+internal sealed class CmdRegistry(IImplementationProvider implementationsProvider) : ICmdRegistry
 {
-	#region ctor DI
-	
-	private readonly IImplementationProvider implementationsProvider;
-
-	public CmdRegistry(IImplementationProvider implementationsProvider)
-	{
-		this.implementationsProvider = implementationsProvider;
-	}
-	#endregion
-
 	private readonly ConcurrentDictionary<string, LambdaCmd> LambdaSimpleCmds = new();
 
 	private readonly ConcurrentDictionary<string, Type> CmdNameToCmdType = new();

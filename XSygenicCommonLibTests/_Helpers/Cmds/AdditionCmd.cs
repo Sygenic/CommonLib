@@ -19,6 +19,6 @@ public sealed class AdditionCmd : ICmd<AdditionContext>
 
 public sealed class AdditionContext
 {
-    public int[] input = Array.Empty<int>();
+    public int[] input = [];
     public int output;
 }

@@ -3,7 +3,7 @@
 [NotTested]
 internal sealed class ImplementationProvider : IImplementationProvider
 {
-	private readonly HashSet<Assembly> assemblyHashSet = new();
+	private readonly HashSet<Assembly> assemblyHashSet = [];
 
 	public IEnumerable<Assembly> KnownAssembliesAsEnumerable() => assemblyHashSet.AsEnumerable();
 

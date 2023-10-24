@@ -8,9 +8,9 @@ public class BusinessClasses
 		var cancellationToken = CancellationToken.None;
 		var aSimpleCmd = new ASimpleCmd();
 		var addCmd = new AdditionCmd();
-		var additionContext = new AdditionContext { input = new int[] { 1, 2, 3 } };
+		var additionContext = new AdditionContext { input = [1, 2, 3] };
 		var multiplyCmd = new MultiplyCmd();
-		var multiplyContext = new MultiplyContex { input = new int[] { 2, 3, 4 } };
+		var multiplyContext = new MultiplyContex { input = [2, 3, 4] };
 
 		Assert.True(await aSimpleCmd.CanExecuteAsync(cancellationToken));
 		await aSimpleCmd.ExecuteAsync(cancellationToken);

@@ -20,6 +20,6 @@ public sealed class MultiplyCmd : ICmd<MultiplyContex>
 
 public sealed class MultiplyContex
 {
-    public int[] input = Array.Empty<int>();
+    public int[] input = [];
     public int output;
 }

@@ -45,11 +45,13 @@ internal sealed class HandlerProvider : IHandlerProvider
 			var genericArguments = interfce.GetGenericArguments();
 			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 1);
 			var key = genericArguments[0];
-			if (!mapping.ContainsKey(key))
+			if (!mapping.TryGetValue(key, out var value))
 			{
-				mapping[key] = new HashSet<Type>();
+				value = [];
+				mapping[key] = value;
 			}
-			mapping[key].Add(handlerType);
+
+			value.Add(handlerType);
 		}
 		return mapping;
 	}

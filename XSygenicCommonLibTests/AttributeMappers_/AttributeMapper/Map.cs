@@ -2,6 +2,9 @@
 
 public class Map
 {
+	private static readonly string[] expected = ["one", "two"];
+	private static readonly string[] expectedArray = ["1", "2", "3"];
+
 	[Fact]
 	public void _()
 	{
@@ -13,8 +16,8 @@ public class Map
 				.Map<TODOAttribute, object[]>(value => target.Tudu = value)
 				.Map<TODOAttribute, object[]>(nameof(SourceClass.Method), value => target.MethodTudu = value);
 
-		Assert.Equal(new string[] { "one", "two" }, target.TestStringSingle);
-		Assert.Equal(new string[] { "1", "2", "3" }, target.Tudu);
+		Assert.Equal(expected, target.TestStringSingle);
+		Assert.Equal(expectedArray, target.Tudu);
 		Assert.Equal(new object[] { 1, 2, 3 }, target.MethodTudu);
 	}
 
@@ -30,8 +33,8 @@ public class Map
 
 	class TargetInstance
 	{
-		public string[] TestStringSingle { get; set; } = Array.Empty<string>();
-		public object[] Tudu { get; set; } = Array.Empty<object>();
-		public object[] MethodTudu { get; set; } = Array.Empty<object>();
+		public string[] TestStringSingle { get; set; } = [];
+		public object[] Tudu { get; set; } = [];
+		public object[] MethodTudu { get; set; } = [];
 	}
 }

@@ -8,9 +8,4 @@
 /// </summary>
 [Tested]
 [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-public sealed class TestedAttribute : BaseValueAttribute<string[]>
-{
-	public TestedAttribute(params string[] infos) : base(infos)
-	{
-	}
-}
+public sealed class TestedAttribute(params string[] infos) : BaseValueAttribute<string[]>(infos);

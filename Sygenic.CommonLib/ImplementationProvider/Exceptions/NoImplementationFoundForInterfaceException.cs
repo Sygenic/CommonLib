@@ -2,9 +2,7 @@
 
 [NotTested]
 [Serializable]
-internal sealed class NoImplementationFoundForInterfaceException : Exception
+internal sealed class NoImplementationFoundForInterfaceException(Type interfaceType) : Exception
 {
-	private readonly Type InterfaceType;
-
-	public NoImplementationFoundForInterfaceException(Type interfaceType) => InterfaceType = interfaceType;
+	public readonly Type InterfaceType = interfaceType;
 }

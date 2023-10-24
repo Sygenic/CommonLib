@@ -1,22 +1,13 @@
 ﻿namespace Sygenic.CommonLib;
 
 [Tested]
-internal sealed class ColorConsoleHelper : IColorConsoleHelper
+internal sealed class ColorConsoleHelper(
+	ILogger<ColorConsoleHelper> logger, 
+	IOptions<ColorConsoleSettings> options) : IColorConsoleHelper
 {
-	#region ctor DI
-	private readonly ILogger<ColorConsoleHelper> logger;
-	private readonly ColorConsoleSettings settings;
-
-	public ColorConsoleHelper(ILogger<ColorConsoleHelper> logger, IOptions<ColorConsoleSettings> options)
-	{
-		this.logger = logger;
-		settings = options.Value;
-	} 
-	#endregion
-
 	public void MaybeDisplayAllEnabledLogLevels()
 	{
-		if (settings.DisplayAllEnabledLogLevelsOnStart)
+		if (options.Value.DisplayAllEnabledLogLevelsOnStart)
 		{
 			logger.LogTrace("TRACE log level is on");
 			logger.LogDebug("DEBUG log level is on");

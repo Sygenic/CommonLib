@@ -1,8 +1,3 @@
 ﻿namespace Sygenic.CommonLib;
 
-public sealed class PathResolverException : Exception
-{
-	public PathResolverException(string message) : base(message)
-	{
-	}
-}
+public sealed class PathResolverException(string message) : Exception(message);
