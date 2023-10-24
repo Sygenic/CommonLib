@@ -1,6 +1,6 @@
 ﻿namespace Cqrs;
 
-internal sealed class Provider
+internal sealed class ValueProvider
 {
 	public int Value;
 }
