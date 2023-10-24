@@ -22,24 +22,24 @@ public class HasAttribute_GetMethodsHaving
 		Assert.Equal(expected, implementationProvider.GetAttributeValue<string[], TestStringsSingleAttribute>(someOtherMethodInfo).OrderBy(x => x).ToArray());
 	}
 	
-	class SomeClass
+	static class SomeClass
 	{
 		[DebuggerNonUserCode]
-		public void SomeMethod()
+		public static void SomeMethod()
 		{
 		}
 
 		[TestStringsSingle("1", "2", "3")]
-		public void SomeOtherMethod()
+		public static void SomeOtherMethod()
 		{
 		}
 
 		[DebuggerNonUserCode]
-		public void ThirdMethod()
+		public static void ThirdMethod()
 		{
 		}
 
-		public void FourthMethod()
+		public static void FourthMethod()
 		{
 		}
 	}
