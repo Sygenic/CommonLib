@@ -1,8 +1,6 @@
 ﻿namespace Sygenic.CommonLib;
 
-internal sealed class CqrsDispatcher(
-	IHandlerProvider handlerProvider, 
-	IServiceProvider serviceProvider) : ICqrsDispatcher
+internal sealed class CqrsDispatcher(IHandlerProvider handlerProvider, IServiceProvider serviceProvider) : ICqrsDispatcher
 {
 	public async ValueTask<R> RunQueryAsync<R>(IQuery<R> query, CancellationToken cancellationToken)
 	{
@@ -21,7 +19,6 @@ internal sealed class CqrsDispatcher(
 		await handler.HandleAsync(command, cancellationToken);
 	}
 
-	[Obsolete("works for just one handler, needs to be for many handlers")]
 	public async Task DispatchEventAsync<E>(E evnt, CancellationToken cancellationToken) where E : IEvent
 	{
 		using var scope = serviceProvider.CreateScope();
