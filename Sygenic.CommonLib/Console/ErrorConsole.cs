@@ -1,6 +1,6 @@
 ﻿namespace Sygenic.CommonLib;
 
-public class ErrorConsole : IConsole
+internal sealed class ErrorConsole : IConsole
 {
 	public IConsole Error => throw new NotImplementedException();
 

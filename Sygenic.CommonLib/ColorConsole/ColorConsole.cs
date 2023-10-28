@@ -31,7 +31,7 @@ public sealed class ColorConsole(IOptions<ColorConsoleSettings> options) : Conso
 		}
 	}
 
-	private string MaybeColorize(LogLevel logLevel, string msg) => 
+	private string MaybeColorize(LogLevel logLevel, string msg) =>
 		settings.Colors.Enabled ? msg.Pastel(ColorPairs[logLevel]) : msg;
 
 	private string MaybePrependCategory(string category, string msg)

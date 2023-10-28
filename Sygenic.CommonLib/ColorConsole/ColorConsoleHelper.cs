@@ -1,9 +1,7 @@
 ﻿namespace Sygenic.CommonLib;
 
 [Tested]
-internal sealed class ColorConsoleHelper(
-	ILogger<ColorConsoleHelper> logger, 
-	IOptions<ColorConsoleSettings> options) : IColorConsoleHelper
+internal sealed class ColorConsoleHelper(ILogger<ColorConsoleHelper> logger, IOptions<ColorConsoleSettings> options) : IColorConsoleHelper
 {
 	public void MaybeDisplayAllEnabledLogLevels()
 	{

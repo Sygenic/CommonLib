@@ -1,6 +1,6 @@
 ﻿namespace Sygenic.CommonLib;
 
-public class Console(ErrorConsole errorConsole) : IConsole
+internal sealed class Console(ErrorConsole errorConsole) : IConsole
 {
 	public IConsole Error => errorConsole;
 
