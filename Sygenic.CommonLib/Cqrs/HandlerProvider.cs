@@ -1,30 +1,19 @@
-﻿
-namespace Sygenic.CommonLib;
+﻿namespace Sygenic.CommonLib;
 
-internal sealed class HandlerProvider : IHandlerProvider
+internal sealed class HandlerProvider(IImplementationProvider implementationProvider) : IHandlerProvider
 {
-	private readonly IImplementationProvider implementationProvider;
-	private readonly MappingTypeToType QueryMapping;
-	private readonly MappingTypeToTypes EventMapping;
+	private readonly MappingTypeToType QueryMapping = CreateQueryMapping(implementationProvider);
+	private readonly MappingTypeToTypes EventMapping = CreateEventMapping(implementationProvider);
 
-	public HandlerProvider(IImplementationProvider implementationProvider)
+	private static MappingTypeToType CreateQueryMapping(IImplementationProvider implementationProvider)
 	{
-		this.implementationProvider = implementationProvider;
-		QueryMapping = CreateQueryMapping();
-		EventMapping = CreateEventMapping();
-	}
-
-	private static readonly string IQUERYHANDLERNAME = typeof(IQueryHandler<,>).Name;
-	private static readonly string IEVENTHANDLERNAME = typeof(IEventHandler<>).Name;
-	
-	private MappingTypeToType CreateQueryMapping()
-	{
+		var iQueryHandlerTypeName = typeof(IQueryHandler<,>).Name;
 		var mapping = new MappingTypeToType();
 		var handlerTypes = implementationProvider.GetTypesImplementingOrExtending(typeof(IQueryHandler<,>));
 		foreach (var handlerType in handlerTypes)
 		{
-			var interfce = handlerType.GetInterface(IQUERYHANDLERNAME) 
-				?? throw new ShouldNotBeHereException($"{IQUERYHANDLERNAME} not implemented");
+			var interfce = handlerType.GetInterface(iQueryHandlerTypeName) 
+				?? throw new ShouldNotBeHereException($"{iQueryHandlerTypeName} not implemented");
 
 			var genericArguments = interfce.GetGenericArguments();
 			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 2);
@@ -33,14 +22,15 @@ internal sealed class HandlerProvider : IHandlerProvider
 		return mapping;
 	}
 
-	private MappingTypeToTypes CreateEventMapping()
+	private static MappingTypeToTypes CreateEventMapping(IImplementationProvider implementationProvider)
 	{
+		var iEventHandlerTypeName = typeof(IEventHandler<>).Name;
 		var mapping = new MappingTypeToTypes();
 		var handlerTypes = implementationProvider.GetTypesImplementingOrExtending(typeof(IEventHandler<>));
 		foreach (var handlerType in handlerTypes)
 		{
-			var interfce = handlerType.GetInterface(IEVENTHANDLERNAME)
-				?? throw new ShouldNotBeHereException($"{IEVENTHANDLERNAME} not implemented");
+			var interfce = handlerType.GetInterface(iEventHandlerTypeName)
+				?? throw new ShouldNotBeHereException($"{iEventHandlerTypeName} not implemented");
 
 			var genericArguments = interfce.GetGenericArguments();
 			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 1);
@@ -68,6 +58,7 @@ internal sealed class HandlerProvider : IHandlerProvider
 	{
 		var eventType = evnt.GetType();
 		if (EventMapping.TryGetValue(eventType, out var handlerTypes)) return handlerTypes;
+
 		throw new NotImplementedException($"Handler for event {eventType} not found/registered/implemented");
 	}
 }
