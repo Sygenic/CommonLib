@@ -21,7 +21,6 @@ internal sealed class AttributeMapper : IAttributeMapper
 	}
 
 	[NotTested]
-	[Maybe("Not sure if anybody uses the method")]
 	public IAttributeMapper Map<ATTRIBUTE, VALUE>(string memberName, Action<VALUE> action) where ATTRIBUTE: BaseValueAttribute<VALUE>
 	{
 		var srcType = SourceTypeMarkedWithAttributes;

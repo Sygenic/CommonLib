@@ -1,11 +1,10 @@
 ﻿namespace Sygenic.CommonLib;
 
 [NotTested]
-[Serializable]
-internal sealed class TypeNotImplementingICmdException : Exception
+public sealed class TypeNotImplementingICmdException : Exception
 {
-	internal readonly string CmdName;
-	internal readonly Type CmdImplementationType;
+	public readonly string CmdName;
+	public readonly Type CmdImplementationType;
 
 	/// <summary>
 	/// When property (ICmd.)Name is not found on command implementation

@@ -1,7 +1,7 @@
 ﻿namespace Sygenic.CommonLib;
 
 [Tested]
-public sealed class AttributeMapperFactory : IAttributeMapperFactory
+internal sealed class AttributeMapperFactory : IAttributeMapperFactory
 {
 	public IAttributeMapper Create<SOURCE_TYPE_WITH_ATTRIBUTES>() => new AttributeMapper
 	{ 
