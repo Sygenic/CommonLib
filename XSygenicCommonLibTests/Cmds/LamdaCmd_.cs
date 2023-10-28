@@ -1,4 +1,4 @@
-﻿namespace XTests;
+﻿namespace Cmds;
 
 public class LamdaCmd_
 {

@@ -12,7 +12,7 @@ internal sealed class CmdRegistry(IImplementationProvider implementationsProvide
 		var implementations = implementationsProvider.GetTypesImplementingOrExtending(typeof(ICmd));
 		foreach (var implementation in implementations)
 		{
-			var property = implementation.GetProperty(nameof(ICmd.Name), BindingFlags.Static | BindingFlags.Public) 
+			var property = implementation.GetProperty(nameof(ICmd.Name), BindingFlags.Static | BindingFlags.Public)
 				?? throw new TypeNotImplementingICmdException(implementation);
 
 			var cmdName = property.GetValue(null)?.ToString() ?? "";
@@ -61,10 +61,11 @@ internal sealed class CmdRegistry(IImplementationProvider implementationsProvide
 	/// <returns></returns>
 	/// <exception cref="ArgumentException"></exception>
 	/// <exception cref="ShouldNotBeHereException"></exception>
-  public ICmd<string[]> GetCmdByProgramArgs(string[] args)
-  {
-    if (args.Length < 2) throw new ArgumentException("Wrong number of arguments");
-    var cmd = GetCmd(args[1]) as ICmd<string[]> ?? throw new ShouldNotBeHereException();
-    return cmd;
-  }
+	public ICmd<string[]> GetCmdByProgramArgs(string[] args)
+	{
+		if (args.Length < 2) throw new ArgumentException("Wrong number of arguments");
+		var cmd = GetCmd(args[1]) as ICmd<string[]>;
+
+		return cmd ?? throw new ShouldNotBeHereException("Cmd is null");
+	}
 }

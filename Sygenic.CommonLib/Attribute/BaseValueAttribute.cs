@@ -1,7 +1,7 @@
 ﻿namespace Sygenic.CommonLib;
 
 /// <summary>
-/// Base class that contains property VALUE of given type T
+/// Base attribute class that contains property VALUE of type T
 /// </summary>
 /// <typeparam name="T"></typeparam>
 [Tested("If AttributeMapper is tested than BaseValueAttribute<T> is tested")]

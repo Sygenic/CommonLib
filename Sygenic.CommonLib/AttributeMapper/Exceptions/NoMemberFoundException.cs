@@ -2,9 +2,4 @@
 
 [NotTested]
 [Serializable]
-internal sealed class NoMemberFoundException : BaseIfException<NoMemberFoundException>
-{
-	public NoMemberFoundException()
-	{
-	}
-}
+internal sealed class NoMemberFoundException : BaseIfException<NoMemberFoundException>;

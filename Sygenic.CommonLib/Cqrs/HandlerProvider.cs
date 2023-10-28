@@ -16,7 +16,7 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 				?? throw new ShouldNotBeHereException($"{iQueryHandlerTypeName} not implemented");
 
 			var genericArguments = interfce.GetGenericArguments();
-			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 2);
+			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 2, "Need exactly 2 generic arguments");
 			mapping[genericArguments[0]] = handlerType;
 		}
 		return mapping.ToFrozenDictionary();
@@ -33,7 +33,7 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 				?? throw new ShouldNotBeHereException($"{iEventHandlerTypeName} not implemented");
 
 			var genericArguments = interfce.GetGenericArguments();
-			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 1);
+			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 1, "Need exactly one generic argument");
 			var key = genericArguments[0];
 			if (!mapping.TryGetValue(key, out var value))
 			{

@@ -1,4 +1,4 @@
-﻿namespace _;
+﻿namespace Exceptions;
 
 public class BaseIfException_
 {
