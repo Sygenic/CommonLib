@@ -38,5 +38,5 @@ public interface IEnv
 	/// <summary>
 	/// Works from .net 8, does not work in .net7
 	/// </summary>
-	//bool IsPrivilegedProcess { get; }
+	bool IsPrivilegedProcess { get; }
 }

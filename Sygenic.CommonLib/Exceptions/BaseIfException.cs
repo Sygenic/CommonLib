@@ -15,8 +15,4 @@ public abstract class BaseIfException<T> : Exception where T: Exception, new()
 			throw new T();
 		}
 	}
-
-	protected BaseIfException()
-	{
-	}
 }

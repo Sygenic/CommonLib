@@ -41,5 +41,5 @@ public class Env : IEnv
   /// <summary>
   /// Works from .net 8, does not work in .net7
   /// </summary>
-  //public bool IsPrivilegedProcess => Environment.IsPrivilegedProcess;
+  public bool IsPrivilegedProcess => Environment.IsPrivilegedProcess;
 }
