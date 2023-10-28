@@ -8,7 +8,7 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 	private static MappingTypeToType CreateQueryMapping(IImplementationProvider implementationProvider)
 	{
 		var iQueryHandlerTypeName = typeof(IQueryHandler<,>).Name;
-		var mapping = new MappingTypeToType();
+		var mapping = new Dictionary<Type, Type>();
 		var handlerTypes = implementationProvider.GetTypesImplementingOrExtending(typeof(IQueryHandler<,>));
 		foreach (var handlerType in handlerTypes)
 		{
@@ -19,13 +19,13 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 2);
 			mapping[genericArguments[0]] = handlerType;
 		}
-		return mapping;
+		return mapping.ToFrozenDictionary();
 	}
 
 	private static MappingTypeToTypes CreateEventMapping(IImplementationProvider implementationProvider)
 	{
 		var iEventHandlerTypeName = typeof(IEventHandler<>).Name;
-		var mapping = new MappingTypeToTypes();
+		var mapping = new Dictionary<Type, HashSet<Type>>();
 		var handlerTypes = implementationProvider.GetTypesImplementingOrExtending(typeof(IEventHandler<>));
 		foreach (var handlerType in handlerTypes)
 		{
@@ -43,7 +43,19 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 
 			value.Add(handlerType);
 		}
-		return mapping;
+		var transformationDictionary = TransformValuesToFrozenSets(mapping);
+		return transformationDictionary.ToFrozenDictionary();
+	}
+
+	private static Dictionary<Type, FrozenSet<Type>> TransformValuesToFrozenSets(Dictionary<Type, HashSet<Type>> mapping)
+	{
+		var transformationDictionary = new Dictionary<Type, FrozenSet<Type>>();
+		foreach (var pair in mapping)
+		{
+			transformationDictionary.Add(pair.Key, pair.Value.ToFrozenSet());
+		}
+
+		return transformationDictionary;
 	}
 
 	public Type GetQueryHandlerType<TResponse>(IQuery<TResponse> query)

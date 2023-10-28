@@ -1,6 +1,7 @@
 ﻿global using System.Buffers.Text;
 global using System.Collections;
 global using System.Collections.Concurrent;
+global using System.Collections.Frozen;
 global using System.Collections.Immutable;
 global using System.Collections.ObjectModel;
 global using System.Diagnostics;
@@ -22,6 +23,6 @@ global using Microsoft.Extensions.Options;
 
 global using Pastel;
 
-global using MappingTypeToType = System.Collections.Generic.Dictionary<System.Type, System.Type>;
-global using MappingTypeToTypes = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.HashSet<System.Type>>;
+global using MappingTypeToType = System.Collections.Frozen.FrozenDictionary<System.Type, System.Type>;
+global using MappingTypeToTypes = System.Collections.Frozen.FrozenDictionary<System.Type, System.Collections.Frozen.FrozenSet<System.Type>>;
 global using Types = System.Collections.Generic.IEnumerable<System.Type>;
