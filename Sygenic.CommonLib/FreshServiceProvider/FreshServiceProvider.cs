@@ -1,15 +1,11 @@
 ﻿namespace Sygenic.CommonLib;
 
-internal sealed class FreshServiceProvider() : IFreshServiceProvider
+public sealed class FreshServiceProvider(Action<IServiceCollection>? configureServices) : IFreshServiceProvider
 {
-	private Action<IServiceCollection>? LambdaToPrepareCommonServices;
-
-	public void AddCommonServices(Action<IServiceCollection> services) => LambdaToPrepareCommonServices = services;
-
 	private ServiceProvider BuildProvider(object[] implementationsToUse)
 	{
 		var collection = new ServiceCollection();
-		LambdaToPrepareCommonServices?.Invoke(collection);
+		configureServices?.Invoke(collection);
 		RegisterEveryImplementationAsSelfWithAllInterfacesAsSingleton(implementationsToUse, collection);
 		var provider = collection.BuildServiceProvider();
 		return provider;

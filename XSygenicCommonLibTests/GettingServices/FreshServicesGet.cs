@@ -5,8 +5,7 @@ public class FreshServicesGet
 	[Fact]
 	public void _()
 	{
-		var ssp = new FreshServiceProvider();
-		ssp.AddCommonServices(services =>
+		var ssp = new FreshServiceProvider(services =>
 		{
 			services.AddTransient<TransientThatUsesSingleton>();
 			services.AddSingleton<ISingleton, Singleton>();

@@ -2,8 +2,6 @@
 
 public interface IFreshServiceProvider
 {
-	void AddCommonServices(Action<IServiceCollection> services);
-
 	T Get<T>(params object[] implementationsToUse) 
 		where T : notnull;
 
