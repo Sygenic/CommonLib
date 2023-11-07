@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Sygenic Common Lib</Title>
-    <Version>1.0.5</Version>
+    <Version>1.0.8</Version>
     <Authors>Sygenic</Authors>
     <Company>Sygenic</Company>
     <Description>Set of standard code for Sygenic software.</Description>
