@@ -17,9 +17,9 @@ internal sealed class ImplementationProvider : IImplementationProvider
 
 	public void PushCurrentDomainAssembliesToKnownAssemblies() => PushToKnownAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
-	public IEnumerable<Type> GetTypesImplementingOrExtending<T>() => GetTypesImplementingOrExtending(typeof(T));
+	public Types GetTypesImplementingOrExtending<T>() => GetTypesImplementingOrExtending(typeof(T));
 
-	public IEnumerable<Type> GetTypesImplementingOrExtending(Type type)
+	public Types GetTypesImplementingOrExtending(Type type)
 	{
 		var ret = new HashSet<Type>();
 		foreach (var assembly in assemblyHashSet)
@@ -36,7 +36,7 @@ internal sealed class ImplementationProvider : IImplementationProvider
 		return ret.AsEnumerable();
 	}
 
-	public IEnumerable<Type> GetInterfacesInheritedFrom(Type type)
+	public Types GetInterfacesInheritedFrom(Type type)
 	{
 		var ret = new HashSet<Type>();
 		foreach (var assembly in assemblyHashSet)

@@ -14,12 +14,11 @@ public static class GuidExtensions
 		Span<byte> guidBytes = stackalloc byte[16];
 		Span<byte> encodedBytes = stackalloc byte[24];
 
-		MemoryMarshal.TryWrite(guidBytes, in guid); // write bytes from the Guid
+		MemoryMarshal.TryWrite(guidBytes, in guid);
 		Base64.EncodeToUtf8(guidBytes, encodedBytes, out _, out _);
 
 		Span<char> chars = stackalloc char[22];
 
-		// replace any characters which are not URL safe and skip the finalStringRepresentation two bytes as these will be '==' padding we don't need
 		for (var index = 0; index < 22; index++)
 		{
 			chars[index] = encodedBytes[index] switch
@@ -30,8 +29,6 @@ public static class GuidExtensions
 			};
 		}
 
-		var finalStringRepresentation = new string(chars);
-
-		return finalStringRepresentation;
+		return new string(chars);
 	}
 }

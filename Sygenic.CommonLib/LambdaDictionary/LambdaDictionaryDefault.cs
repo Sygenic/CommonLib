@@ -7,6 +7,7 @@
 /// <typeparam name="TKey"></typeparam>
 /// <typeparam name="TValue"></typeparam>
 [NotTested]
+[Obsolete("Target for rewrite")]
 public class LambdaDictionaryDefault<TKey, TValue>
 	: ICollection<KeyValuePair<TKey, TValue>>,
 		IEnumerable<KeyValuePair<TKey, TValue>>,

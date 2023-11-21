@@ -26,3 +26,6 @@ global using Pastel;
 global using MappingTypeToType = System.Collections.Frozen.FrozenDictionary<System.Type, System.Type>;
 global using MappingTypeToTypes = System.Collections.Frozen.FrozenDictionary<System.Type, System.Collections.Frozen.FrozenSet<System.Type>>;
 global using Types = System.Collections.Generic.IEnumerable<System.Type>;
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("XSygenicCommonLibTests")]

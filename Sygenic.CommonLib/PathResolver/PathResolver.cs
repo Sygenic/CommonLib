@@ -1,7 +1,7 @@
 ﻿namespace Sygenic.CommonLib;
 
 [Tested]
-public class PathResolver : IPathResolver
+internal sealed class PathResolver : IPathResolver
 {
 	private const BindingFlags FLAGS = BindingFlags.Public
 		| BindingFlags.NonPublic
