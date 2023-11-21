@@ -17,7 +17,7 @@ public static class SygenicCommonLibExtensions
 		services.TryAddTransient<IPathResolver, PathResolver>();
 		services.TryAddTransient<IColorConsoleHelper, ColorConsoleHelper>();
 		services.TryAddTransient<IHelpFile, HelpFile>();
-		services.TryAddTransient<IEnv, Env>();
+		services.TryAddTransient<IEnvironment, Environment>();
 		services.TryAddTransient<IAttributeMapperFactory, AttributeMapperFactory>();
 		services.TryAddTransient<ErrorConsole>();
 		services.TryAddTransient<Console>();

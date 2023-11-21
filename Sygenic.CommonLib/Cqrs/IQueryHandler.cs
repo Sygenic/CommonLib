@@ -4,6 +4,6 @@ public interface IQueryHandler<in Q, R> : IQueryHandlerCaller<R> where Q : IQuer
 {
 	Task<R> HandleAsync(Q query, CancellationToken cancellationToken);
 
-	async Task<R> IQueryHandlerCaller<R>.CallQueryHandlerAsyc(
-		IQuery<R> query, CancellationToken cancellationToken) => await HandleAsync((Q)query, cancellationToken);
+	async Task<R> IQueryHandlerCaller<R>.CallQueryHandlerAsyc(IQuery<R> query, CancellationToken cancellationToken) 
+		=> await HandleAsync((Q)query, cancellationToken);
 }

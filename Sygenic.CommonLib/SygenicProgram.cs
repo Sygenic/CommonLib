@@ -13,10 +13,10 @@ public sealed class SygenicProgram
       .ConfigureAppConfiguration(builder =>
       {
         var cultureInfo = new CultureInfo((int)CultureTypes.NeutralCultures);
-        var machineName = cultureInfo.TextInfo.ToTitleCase(Environment.MachineName);
+        var machineName = cultureInfo.TextInfo.ToTitleCase(System.Environment.MachineName);
         builder.AddJsonFile(path: "appsettings.json", optional: true, reloadOnChange: false);
         builder.AddJsonFile(path: $"appsettings.Machine.{machineName}.json", optional: true, reloadOnChange: false);
-        builder.AddJsonFile(path: $"appsettings.User.{Environment.UserName}.json", optional: true, reloadOnChange: false);
+        builder.AddJsonFile(path: $"appsettings.User.{System.Environment.UserName}.json", optional: true, reloadOnChange: false);
         builder.AddEnvironmentVariables(environmentalVariablePrefix);
         builder.AddCommandLine(args); // program.exe -d VAR=val
       })

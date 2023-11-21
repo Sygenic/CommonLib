@@ -3,7 +3,7 @@
 /// <summary>
 /// Interface to (transient) service of bridge to System.Environment
 /// </summary>
-public interface IEnv
+public interface IEnvironment
 {
 	string CommandLine { get; }
 	string CurrentDirectory { get; set; }
@@ -15,7 +15,7 @@ public interface IEnv
 	bool Is64BitProcess { get; }
 	string[] GetCommandLineArgs();
 	IDictionary GetEnvironmentVariables();
-	string GetFolderPath(Environment.SpecialFolder folder, Environment.SpecialFolderOption option = Environment.SpecialFolderOption.None);
+	string GetFolderPath(System.Environment.SpecialFolder folder, System.Environment.SpecialFolderOption option = System.Environment.SpecialFolderOption.None);
 	string[] GetLogicalDrives();
 	string MachineName { get; }
 	string NewLine { get; }
