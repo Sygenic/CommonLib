@@ -2,7 +2,7 @@
 
 internal sealed class CqrsDispatcher(IHandlerProvider handlerProvider, IServiceProvider serviceProvider) : ICqrsDispatcher
 {
-	public async ValueTask<R> RunQueryAsync<R>(IQuery<R> query, CancellationToken cancellationToken)
+	public async Task<R> RunQueryAsync<R>(IQuery<R> query, CancellationToken cancellationToken)
 	{
 		var handlerType = handlerProvider.GetQueryHandlerType(query);
 		using var scope = serviceProvider.CreateScope();
@@ -12,7 +12,7 @@ internal sealed class CqrsDispatcher(IHandlerProvider handlerProvider, IServiceP
 		return await handlerCaller.CallQueryHandlerAsyc(query, cancellationToken);
 	}
 
-	public async ValueTask RunCommandAsync<C>(C command, CancellationToken cancellationToken) where C : ICommand
+	public async Task RunCommandAsync<C>(C command, CancellationToken cancellationToken) where C : ICommand
 	{
 		using var scope = serviceProvider.CreateScope();
 		var handler = scope.ServiceProvider.GetRequiredService<ICommandHandler<C>>();

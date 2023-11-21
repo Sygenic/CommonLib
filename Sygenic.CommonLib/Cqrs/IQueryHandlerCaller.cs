@@ -2,5 +2,5 @@
 
 public interface IQueryHandlerCaller<R>
 {
-	ValueTask<R> CallQueryHandlerAsyc(IQuery<R> query, CancellationToken cancellationToken);
+	Task<R> CallQueryHandlerAsyc(IQuery<R> query, CancellationToken cancellationToken);
 }
