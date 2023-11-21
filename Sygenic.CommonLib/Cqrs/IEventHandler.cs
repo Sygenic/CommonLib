@@ -2,5 +2,5 @@
 
 public interface IEventHandler<in E> where E : IEvent
 {
-	Task HandleEventAsync(E evnt, CancellationToken cancellationToken);
+	Task HandleAsync(E evnt, CancellationToken cancellationToken);
 }

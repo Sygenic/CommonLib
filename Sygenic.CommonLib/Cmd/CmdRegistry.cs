@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[NotTested]
 internal sealed class CmdRegistry(IImplementationProvider implementationsProvider) : ICmdRegistry
 {
 	private readonly ConcurrentDictionary<string, LambdaCmd> LambdaSimpleCmds = new();
@@ -38,7 +37,7 @@ internal sealed class CmdRegistry(IImplementationProvider implementationsProvide
 
 		if (CmdNameToCmdType.TryGetValue(name, out var type))
 		{
-			return serviceProvider.GetRequiredService(type) as ICmd ?? throw new TypeNotImplementingICmdException(name, type);
+			return serviceProvider.GetRequiredService(type) as ICmd ?? throw new TypeNotImplementingICmdException(type, name);
 		}
 
 		throw new CmdNotRegisteredException(name);

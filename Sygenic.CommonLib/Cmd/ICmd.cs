@@ -3,7 +3,6 @@
 /// <summary>
 /// Simple command without any context
 /// </summary>
-[NotTested]
 public interface ICmd
 {
 	static string Name { get; } = "";
@@ -17,7 +16,6 @@ public interface ICmd
 /// Command which runs with some context
 /// </summary>
 /// <typeparam name="CONTEXT"></typeparam>
-[NotTested]
 public interface ICmd<CONTEXT> : ICmd where CONTEXT: notnull
 {
 	Task<bool> CanExecuteAsync(CONTEXT context, CancellationToken cancellationToken);

@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public sealed class MemoryPersistence : IPersistence
 {
 	private readonly ConcurrentDictionary<string, IHasId> storage = new();

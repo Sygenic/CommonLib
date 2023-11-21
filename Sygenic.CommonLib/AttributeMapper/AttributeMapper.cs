@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 internal sealed class AttributeMapper : IAttributeMapper
 {
 	internal AttributeMapper()
@@ -9,7 +8,6 @@ internal sealed class AttributeMapper : IAttributeMapper
 
 	public required Type SourceTypeMarkedWithAttributes { get; init; }
 
-	[NotTested]
 	public IAttributeMapper Map<ATTRIBUTE, VALUE>(Action<VALUE> action) where ATTRIBUTE : BaseValueAttribute<VALUE>
 	{
 		ATTRIBUTE customAttribute = SourceTypeMarkedWithAttributes.GetCustomAttribute<ATTRIBUTE>(inherit: true)
@@ -20,7 +18,6 @@ internal sealed class AttributeMapper : IAttributeMapper
 		return this;
 	}
 
-	[NotTested]
 	public IAttributeMapper Map<ATTRIBUTE, VALUE>(string memberName, Action<VALUE> action) where ATTRIBUTE: BaseValueAttribute<VALUE>
 	{
 		var srcType = SourceTypeMarkedWithAttributes;

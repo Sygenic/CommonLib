@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public interface IPersistence
 {
 	Task<T> LoadAsync<T>(string id) where T : IHasId;

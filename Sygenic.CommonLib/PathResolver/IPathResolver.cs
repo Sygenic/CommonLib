@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public interface IPathResolver
 {
 	/// <summary>

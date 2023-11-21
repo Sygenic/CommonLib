@@ -1,7 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[NotTested]
-[Serializable]
 public sealed class NoAttributeFoundException<ATTRIBUTE>(object marketTarget) 
 	: Exception($"No attribute {typeof(ATTRIBUTE)} found on {marketTarget}") where ATTRIBUTE : Attribute
 {

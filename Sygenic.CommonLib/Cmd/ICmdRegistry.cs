@@ -3,7 +3,6 @@
 /// <summary>
 /// Singleton which provides any command(s) by name(s)
 /// </summary>
-[NotTested]
 public interface ICmdRegistry
 {
 	/// <summary>

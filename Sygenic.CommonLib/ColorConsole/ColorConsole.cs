@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public sealed class ColorConsole(IOptions<ColorConsoleSettings> options) : ConsoleFormatter(nameof(ColorConsole))
 {
 	private readonly FrozenDictionary<LogLevel, Color> ColorPairs = new Dictionary<LogLevel, Color>

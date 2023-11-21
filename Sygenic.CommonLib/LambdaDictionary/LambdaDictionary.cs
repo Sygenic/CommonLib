@@ -6,7 +6,7 @@
 /// </summary>
 /// <typeparam name="TKey"></typeparam>
 /// <typeparam name="TValue"></typeparam>
-[NotTested][Obsolete("Target for rewrite")]
+[Obsolete("Target for rewrite")]
 public class LambdaDictionary<TKey, TValue>
 	: ICollection<KeyValuePair<TKey, TValue>>,
 		IEnumerable<KeyValuePair<TKey, TValue>>,

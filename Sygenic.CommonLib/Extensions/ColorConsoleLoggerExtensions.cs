@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public static class ColorConsoleLoggerExtensions
 {
     public static ILoggingBuilder AddCyberConsole(this ILoggingBuilder builder) =>

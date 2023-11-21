@@ -3,16 +3,15 @@
 /// <summary>
 /// Finds implementation(s) for given type based on assemblies provided
 /// </summary>
-[NotTested]
 public interface IImplementationProvider
 {
 	IEnumerable<Assembly> KnownAssembliesAsEnumerable();
 	void PushCurrentDomainAssembliesToKnownAssemblies();
 	void PushToKnownAssemblies(params Assembly[] assemblies);
 
-	IEnumerable<Type> GetTypesImplementingOrExtending<T>();
-	IEnumerable<Type> GetTypesImplementingOrExtending(Type type);
-	IEnumerable<Type> GetInterfacesInheritedFrom(Type type);
+    Types GetTypesImplementingOrExtending<T>();
+    Types GetTypesImplementingOrExtending(Type type);
+    Types GetInterfacesInheritedFrom(Type type);
 
 	Type GetSingleTypeImplementingOrExtending(Type interfaceType);
 

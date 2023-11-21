@@ -1,4 +1,3 @@
 ﻿namespace Sygenic.CommonLib;
 
-[NotTested]
-internal sealed class NoMemberFoundException : BaseIfException<NoMemberFoundException>;
+public sealed class NoMemberFoundException : BaseIfException<NoMemberFoundException>;

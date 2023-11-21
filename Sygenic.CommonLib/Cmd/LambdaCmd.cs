@@ -3,7 +3,6 @@
 /// <summary>
 /// Simple command without context defined by CanExecuteLambda lambda and ExecuteLambda lambda
 /// </summary>
-[NotTested]
 public sealed class LambdaCmd : ICmd
 {
 	public static string Name { get; } = nameof(LambdaCmd);

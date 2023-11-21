@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public static class ServiceProviderGetExtensions
 {
 	public static T Get<T>(this IServiceProvider provider) 

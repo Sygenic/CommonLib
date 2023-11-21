@@ -29,7 +29,7 @@ internal sealed class CqrsDispatcher(IHandlerProvider handlerProvider, IServiceP
 			var handler = scope.ServiceProvider.GetRequiredService(handlerType) as IEventHandler<E> 
 				?? throw new ShouldNotBeHereException($"Handler type not found or not {nameof(IEventHandler<E>)}");
 
-			tasks.Add(handler.HandleEventAsync(evnt, cancellationToken));
+			tasks.Add(handler.HandleAsync(evnt, cancellationToken));
 		}
 		await Task.WhenAll(tasks);
 	}

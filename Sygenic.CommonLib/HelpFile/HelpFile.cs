@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 internal sealed class HelpFile(IOptions<HelpFileSettings> options, ILogger<HelpFile> logger) : IHelpFile
 {
 	private readonly HelpFileSettings settings = options.Value;

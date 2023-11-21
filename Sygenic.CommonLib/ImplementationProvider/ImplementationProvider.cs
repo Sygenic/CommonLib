@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[NotTested]
 internal sealed class ImplementationProvider : IImplementationProvider
 {
 	private readonly HashSet<Assembly> assemblyHashSet = [];

@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public interface ISerializer
 {
 	string Serialize(object obj, bool prettify = false);

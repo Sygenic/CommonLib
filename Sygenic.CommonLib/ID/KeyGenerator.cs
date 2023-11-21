@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[NotTested]
 public static class KeyGenerator
 {
 	public const byte DEFAULT_ID_LENGTH = 21;

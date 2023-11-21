@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 internal sealed class Serializer : ISerializer
 {
 	public string Serialize(object obj, bool prettify = false) => 

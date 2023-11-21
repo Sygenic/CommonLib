@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public sealed class LogLevelsColors
 {
 	public bool Enabled { get; set; } = true;

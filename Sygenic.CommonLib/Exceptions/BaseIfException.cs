@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public abstract class BaseIfException<T> : Exception where T: Exception, new()
 {
 	/// <summary>

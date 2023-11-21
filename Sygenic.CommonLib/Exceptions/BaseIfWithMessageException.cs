@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 public abstract class BaseIfWithMessageException<T> : Exception where T: Exception
 {
 	/// <summary>

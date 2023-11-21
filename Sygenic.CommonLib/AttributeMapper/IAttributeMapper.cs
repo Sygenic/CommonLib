@@ -1,6 +1,5 @@
 ﻿namespace Sygenic.CommonLib;
 
-[Tested]
 [Obsolete("Will be removed in 2024")]
 public interface IAttributeMapper
 {
