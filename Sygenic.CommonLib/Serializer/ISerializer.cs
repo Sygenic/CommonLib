@@ -3,7 +3,7 @@
 [Tested]
 public interface ISerializer
 {
-	string ToJson(object obj, bool prettify = false);
-	T FromJson<T>(string json);
-	void PopulateObject(object obj, string json);
+	string Serialize(object obj, bool prettify = false);
+	T Deserialize<T>(string json);
+	void PopulateObject(object obj, string serialized);
 }

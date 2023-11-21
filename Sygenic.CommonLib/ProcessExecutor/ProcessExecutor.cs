@@ -1,6 +1,6 @@
 ﻿namespace Sygenic.CommonLib;
 
-internal class ProcessExecutor : IProcessExecutor
+internal sealed class ProcessExecutor : IProcessExecutor
 {
 	public async Task<ProcessOutcome> StartAsync(CancellationToken cancellationToken, string? workingDir, string executable, params object[] args)
 	{
@@ -27,7 +27,10 @@ internal class ProcessExecutor : IProcessExecutor
 		using var process = Process.Start(startInfo) ?? throw new ProcessExecutorStartException(executable, arguments);
 		
 		await process.WaitForExitAsync(cancellationToken).ConfigureAwait(false);
-		var processOutcome = new ProcessOutcome(Output: process.StandardOutput.ReadToEnd(), Error: process.StandardError.ReadToEnd(), ExitCode: process.ExitCode);
-		return processOutcome;
+
+		return new ProcessOutcome(
+			Output: process.StandardOutput.ReadToEnd(), 
+			Error: process.StandardError.ReadToEnd(), 
+			ExitCode: process.ExitCode);
 	}
 }

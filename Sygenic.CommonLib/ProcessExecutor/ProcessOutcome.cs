@@ -1,3 +1,3 @@
 ﻿namespace Sygenic.CommonLib;
 
-public record ProcessOutcome(string Output, string Error, int ExitCode);
+public sealed record ProcessOutcome(string Output, string Error, int ExitCode);

@@ -6,6 +6,6 @@ public class DeserializationException_
 	public void _()
 	{
 		var serializer = TestHost.Services.Get<ISerializer>();
-		Assert.Throws<DeserializationException>(() => serializer.FromJson<object>(""));
+		Assert.Throws<DeserializationException>(() => serializer.Deserialize<object>(""));
 	}
 }

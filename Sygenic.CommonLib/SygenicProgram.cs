@@ -2,7 +2,10 @@
 
 public sealed class SygenicProgram
 {
-  public static IHost? TryBuildHost(string[] args, string environmentalVariablePrefix = "SYGENIC_", Action<HostBuilderContext, IServiceCollection>? configureServices = null)
+  public static IHost? TryBuildHost(
+      string[] args, 
+      string environmentalVariablePrefix = "SYGENIC_", 
+      Action<HostBuilderContext, IServiceCollection>? configureServices = null)
   {
     var host = Host
       .CreateDefaultBuilder(args)
@@ -42,7 +45,7 @@ public sealed class SygenicProgram
     }
     catch (TaskCanceledException)
     {
-      System.Console.Error.WriteLine($"TaskCanceledException (Ctrl-C maybe), no proper software finish, error code 2");
+      System.Console.Error.WriteLine($"TaskCanceledException (Ctrl+C ???), no proper software finish, error code 2");
       return 2;
     }
   }

@@ -2,5 +2,5 @@
 
 public static class CommonLibConst
 {
-	public static readonly Version Version = new(1, 0, 4);
+	public static readonly Version Version = new(1, 0, 8);
 }
