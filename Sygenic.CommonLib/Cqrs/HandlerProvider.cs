@@ -13,7 +13,7 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 		foreach (var handlerType in handlerTypes)
 		{
 			var interfce = handlerType.GetInterface(iQueryHandlerTypeName) 
-				?? throw new ShouldNotBeHereException($"{iQueryHandlerTypeName} not implemented");
+				?? throw new ShouldNotBeHereException($"{iQueryHandlerTypeName} is not implemented");
 
 			var genericArguments = interfce.GetGenericArguments();
 			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 2, "Need exactly 2 generic arguments");
@@ -30,7 +30,7 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 		foreach (var handlerType in handlerTypes)
 		{
 			var interfce = handlerType.GetInterface(iEventHandlerTypeName)
-				?? throw new ShouldNotBeHereException($"{iEventHandlerTypeName} not implemented");
+				?? throw new ShouldNotBeHereException($"{iEventHandlerTypeName} is not implemented");
 
 			var genericArguments = interfce.GetGenericArguments();
 			ShouldNotBeHereException.ThrowIf(genericArguments.Length != 1, "Need exactly one generic argument");
