@@ -1,10 +1,11 @@
 ﻿namespace Sygenic.CommonLib;
 
 [Tested]
+[Obsolete("Will be removed in 2024")]
 public interface IAttributeMapper
 {
 	/// <summary>
-	/// Call lambda action for every ATTRIBUTE found on SOURCE class where SOURCE is setup from factory into implementation
+	/// Call action for every ATTRIBUTE found on SOURCE class where SOURCE is setup from factory into implementation
 	/// </summary>
 	/// <typeparam name="ATTRIBUTE"></typeparam>
 	/// <typeparam name="VALUE"></typeparam>
@@ -13,7 +14,7 @@ public interface IAttributeMapper
 	IAttributeMapper Map<ATTRIBUTE, VALUE>(Action<VALUE> action) where ATTRIBUTE : BaseValueAttribute<VALUE>;
 
 	/// <summary>
-	/// Call lambda action for every ATTRIBUTE found on SOURCE class type member name MEMBERNAME
+	/// Call action for every ATTRIBUTE found on SOURCE class type member name MEMBERNAME
 	/// where SOURCE is setup from factory into implementation
 	/// </summary>
 	/// <typeparam name="ATTRIBUTE"></typeparam>
