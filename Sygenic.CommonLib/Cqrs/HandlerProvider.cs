@@ -47,16 +47,7 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 		return transformationDictionary.ToFrozenDictionary();
 	}
 
-	private static Dictionary<Type, FrozenSet<Type>> TransformValuesToFrozenSets(Dictionary<Type, HashSet<Type>> mapping)
-	{
-		var transformationDictionary = new Dictionary<Type, FrozenSet<Type>>();
-		foreach (var pair in mapping)
-		{
-			transformationDictionary.Add(pair.Key, pair.Value.ToFrozenSet());
-		}
-
-		return transformationDictionary;
-	}
+	
 
 	public Type GetQueryHandlerType<TResponse>(IQuery<TResponse> query)
 	{
@@ -68,9 +59,6 @@ internal sealed class HandlerProvider(IImplementationProvider implementationProv
 
 	public Types GetEventHandlerTypes(IEvent evnt)
 	{
-		var eventType = evnt.GetType();
-		if (EventMapping.TryGetValue(eventType, out var handlerTypes)) return handlerTypes;
-
-		throw new NotImplementedException($"Handler for event {eventType} not found/registered/implemented");
+		
 	}
 }
