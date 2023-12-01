@@ -19,12 +19,6 @@ public static class CqrsExtensions
 			.AsSelfWithInterfaces()
 			.WithTransientLifetime());
 
-		services.Scan(x => x
-			.FromApplicationDependencies()
-			.AddClasses(x => x.AssignableTo(typeof(IEventHandler<>)))
-			.AsSelf() // just as selfs!
-			.WithTransientLifetime());
-
 		return services;
 	}
 }
