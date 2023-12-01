@@ -13,8 +13,6 @@ internal static class TestHost
 	{
 		var services = new ServiceCollection();
 		services.TryAddCqrs();
-		services.TryAddSygenicCommonLib(implementationProvider 
-			=> implementationProvider.PushToKnownAssemblies(typeof(TestHost).Assembly));
 		Services = services.BuildServiceProvider();
 	}
 }

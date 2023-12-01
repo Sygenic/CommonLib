@@ -6,35 +6,6 @@ internal sealed class ImplementationProvider : IImplementationProvider
 
 	public IEnumerable<Assembly> KnownAssembliesAsEnumerable() => assemblyHashSet.AsEnumerable();
 
-	public void PushToKnownAssemblies(params Assembly[] assemblies)
-	{
-		foreach (var assembly in assemblies)
-		{
-			assemblyHashSet.Add(assembly);
-		}
-	}
-
-	public void PushCurrentDomainAssembliesToKnownAssemblies() => PushToKnownAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-
-	public Types GetTypesImplementingOrExtending<T>() => GetTypesImplementingOrExtending(typeof(T));
-
-	public Types GetTypesImplementingOrExtending(Type type)
-	{
-		var ret = new HashSet<Type>();
-		foreach (var assembly in assemblyHashSet)
-		{
-			var types = assembly.GetTypes().Where(x => !x.IsAbstract && !x.IsInterface);
-			foreach (var item in types)
-			{
-				if (item.IsAssignableTo(type) || item.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == type))
-				{
-					ret.Add(item);
-				}
-			}
-		}
-		return ret.AsEnumerable();
-	}
-
 	public Types GetInterfacesInheritedFrom(Type type)
 	{
 		var ret = new HashSet<Type>();
@@ -53,20 +24,6 @@ internal sealed class ImplementationProvider : IImplementationProvider
 	public string GetStringAttributeValue<ATTRIBUTE>(Type type) where ATTRIBUTE : BaseValueAttribute<string>
 		=> type.GetCustomAttribute<ATTRIBUTE>(inherit: true)?.Value ?? throw new NoAttributeFoundException<ATTRIBUTE>(type);
 
-	public Type GetSingleTypeImplementingOrExtending(Type interfaceType)
-	{
-		var implementationTypes = GetTypesImplementingOrExtending(interfaceType).ToList();
-		if (implementationTypes.Count == 0)
-		{
-			throw new NoImplementationFoundForInterfaceException(interfaceType);
-		}
-		if (implementationTypes.Count > 1)
-		{
-			throw new MoreThanOneImplementationFoundForInterfaceException(interfaceType, implementationTypes);
-		}
-		return implementationTypes[0];
-	}
-
 	public bool HasAttribute<ATTRIBUTE>(MethodInfo methodInfo) where ATTRIBUTE : Attribute
 	{
 		var customAttribute = methodInfo.GetCustomAttribute<ATTRIBUTE>(inherit: true);
@@ -81,4 +38,6 @@ internal sealed class ImplementationProvider : IImplementationProvider
 		var attribute = member.GetCustomAttribute<ATTRIBUTE>(inherit: true) ?? throw new NoAttributeFoundException<ATTRIBUTE>(member);
 		return attribute.Value;
 	}
+
+	public Types GetTypesImplementingOrExtending(Type type) => throw new NotImplementedException();
 }
